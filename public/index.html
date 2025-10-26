@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Runner with Hume AI Monitoring</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Emotion-Aware Endless Runner</h1>
+      <p>
+        Play the game while Hume AI monitors expressions via the camera and microphone.
+        Monitoring runs only after you opt in below.
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="game-panel">
+        <canvas id="game-canvas" width="640" height="360" aria-label="endless runner game"></canvas>
+        <div class="game-controls">
+          <button id="start-game">Start Game</button>
+          <button id="toggle-monitoring" class="secondary">Enable Monitoring</button>
+          <button id="stop-monitoring" class="secondary" disabled>Stop Monitoring</button>
+        </div>
+        <div class="hud" role="status">
+          <span id="hud-score">Score: 0</span>
+          <span id="hud-status">Status: Idle</span>
+        </div>
+      </section>
+
+      <section class="monitoring-panel">
+        <h2>Emotion Monitoring</h2>
+        <div class="preview">
+          <video id="camera-preview" autoplay muted playsinline></video>
+        </div>
+        <div class="status-cards">
+          <article>
+            <h3>Latest Stream Event</h3>
+            <pre id="stream-output">No data yet.</pre>
+          </article>
+          <article>
+            <h3>Batch Snapshots</h3>
+            <pre id="batch-output">No snapshots yet.</pre>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>
+        Built for demonstration purposes. Ensure you comply with privacy requirements when
+        capturing audio and video data.
+      </p>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
