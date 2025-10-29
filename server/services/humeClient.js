@@ -1,9 +1,12 @@
 import fetch from 'node-fetch';
+import dotenv from 'dotenv';
+
+// Load environment variables before accessing process.env
+dotenv.config();
 
 const HUME_API_KEY = process.env.HUME_API_KEY;
 const HUME_SECRET_KEY = process.env.HUME_SECRET_KEY;
 const HUME_BASE_URL = process.env.HUME_BASE_URL ?? 'https://api.hume.ai/v0';
-const STREAMING_TOKEN_PATH = process.env.HUME_STREAMING_TOKEN_PATH ?? '/streaming/token';
 const BATCH_JOB_PATH = process.env.HUME_BATCH_JOB_PATH ?? '/batch/jobs';
 
 class HttpError extends Error {
@@ -28,31 +31,10 @@ function authHeaders() {
   };
 }
 
-export async function createStreamingToken(metadata = {}) {
-  ensureCredentials();
-  const response = await fetch(`${HUME_BASE_URL}${STREAMING_TOKEN_PATH}`, {
-    method: 'POST',
-    headers: authHeaders(),
-    body: JSON.stringify({ metadata }),
-  });
-
-  if (!response.ok) {
-    const payload = await safeJson(response);
-    throw new HttpError('Hume streaming token request failed', response.status, payload);
-  }
-
-  const { token } = await response.json();
-  if (!token) {
-    throw new HttpError('Streaming token missing in Hume response', response.status);
-  }
-
-  return token;
-}
-
 export async function submitBatchSample({ audio, video, config }) {
   ensureCredentials();
   const body = {
-    models: config?.models ?? { facial: {}, prosody: {} },
+    models: config?.models ?? { face: {}, prosody: {} },
     data: {},
   };
 

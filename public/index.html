@@ -4,20 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Runner with Hume AI Monitoring</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link id="theme-stylesheet" rel="stylesheet" href="styles-neutral.css" />
+    <link rel="icon" type="image/png" href="img/arizona-anesthesia-logo.png" />
   </head>
   <body>
-    <header class="app-header">
-      <h1>Emotion-Aware Endless Runner</h1>
-      <p>
-        Play the game while Hume AI monitors expressions via the camera and microphone.
-        Monitoring runs only after you opt in below.
-      </p>
+    <header class="site-header">
+      <div class="top-bar">
+        <div class="top-wrap">
+          <span class="top-brand">THE UNIVERSITY OF ARIZONA</span>
+          <span class="top-sub">Experimental Research Tool</span>
+          <a class="top-about" href="#" role="link">About</a>
+        </div>
+      </div>
+
+      <div class="app-hero">
+        <div class="hero-wrap">
+          <div class="brand">
+            <img src="img/arizona-anesthesia-logo.png" alt="Arizona Anesthesia logo" />
+            <div class="brand-heading">
+              <div class="title-row">
+                <h1>Pediatric Pain Score Detector</h1>
+              </div>
+              <span>Realtime monitoring powered by Hume AI Expression Measurement</span>
+            </div>
+          </div>
+          <p class="tagline">
+            Play the runner in a controlled training environment. Facial insights update live while batch snapshots capture deeper reviews when monitoring is enabled.
+          </p>
+        </div>
+      </div>
     </header>
 
     <main class="layout">
       <section class="game-panel">
-        <canvas id="game-canvas" width="640" height="360" aria-label="endless runner game"></canvas>
+        <div class="game-canvas-wrapper">
+          <canvas id="game-canvas" width="640" height="360" aria-label="endless runner game"></canvas>
+        </div>
         <div class="game-controls">
           <button id="start-game">Start Game</button>
           <button id="toggle-monitoring" class="secondary">Enable Monitoring</button>
@@ -44,6 +66,16 @@
             <pre id="batch-output">No snapshots yet.</pre>
           </article>
         </div>
+      </section>
+
+      <section class="promis-panel">
+        <h2>PROMIS Pediatric Forms</h2>
+        <p>Load the assessment forms that target pediatric populations from the PROMIS catalog.</p>
+        <div class="promis-controls">
+          <button id="load-promis-forms" class="secondary">Load Pediatric Forms</button>
+          <span id="promis-status" class="promis-status" role="status">No forms loaded yet.</span>
+        </div>
+        <ul id="promis-list" class="promis-list" aria-live="polite"></ul>
       </section>
     </main>
 
